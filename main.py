@@ -3,7 +3,12 @@
 print('Введите операцию и числа в формате "+ 2 2",\nоперанды должны располагаться через пробел\nДопустимые операнды + - / *')
 user_notation = input()
 notation_list = user_notation.split(' ')
-assert ((int(notation_list[1]) >= 0) and (int(notation_list[2]) >= 0)),"Операции возможны только с положительными числами"
+try:
+    assert (int(notation_list[1]) >= 0) and (int(notation_list[2]) >= 0)
+except AssertionError:
+    print("Операции возможны только с положительными числами")
+    notation_list[1] = abs(int(notation_list[1]))
+    notation_list[2] = abs(int(notation_list[2]))
 #print(notation_list)
 if notation_list[0] == '+':
     print(int(notation_list[1]) + int(notation_list[2]))
